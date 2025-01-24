@@ -1,5 +1,5 @@
 function Card({ data }) {
-    const imgPath = "http://localhost:3000/img/movies" + data.image;
+    const imgPath = "http://localhost:3000/img/" + data.image;
     return (
         <>
             <div className="card">
