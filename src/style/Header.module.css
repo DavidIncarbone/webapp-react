@@ -1,0 +1,6 @@
+.fixed {
+    height: 50px;
+    position: fixed;
+    z-index: 1000;
+
+}

@@ -8,7 +8,7 @@ function Card({ data }) {
                     <h5 className="card-title">{data.title}</h5>
                     <h5 className="card-title">{data.author}</h5>
                     <p className="card-text">{data.abstract}</p>
-                    <a href="#" className="btn btn-primary">più info</a>
+                    <a href="#" className="btn btn-primary">Più info</a>
                 </div>
             </div>
         </>
