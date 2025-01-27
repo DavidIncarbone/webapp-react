@@ -1,6 +1,6 @@
 .fixed {
     height: 50px;
-    position: fixed;
+    position: sticky;
     z-index: 1000;
 
 }

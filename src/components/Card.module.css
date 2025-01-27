@@ -1,0 +1,18 @@
+/* Stili CSS Modules del componente Card */
+
+/* Ombra nella card */
+#idcards {
+    box-shadow: 3px 5px 15px 1px #ccc;
+}
+
+/* Tag img responsive */
+img {
+    width: 100%;
+    /* L'immagine occupa il 100% di larghezza del suo contenitore */
+    height: 60vh;
+    /* Imposto un'altezza fissa per tutte le immagini contenute nelle Card */
+    max-width: 100%;
+    /* Non supera la sua dimenzione naturale */
+    object-fit: cover;
+    /* Mantiene le proporzioni e riempie il contenitore */
+}

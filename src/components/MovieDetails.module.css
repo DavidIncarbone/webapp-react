@@ -1,0 +1,16 @@
+/* Stili CSS Modules del componente MovieDetails */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Testo nome recensore */
+.text-name {
+    font-style: italic;
+}
+
+/* Ombra nella card */
+#idcards {
+    box-shadow: 3px 5px 15px 1px #ccc;
+}

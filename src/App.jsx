@@ -6,8 +6,9 @@ import DefaultLayout from "./pages/DefaultLayout.jsx"
 import HomePage from "./pages/Homepage.jsx"
 import About from "./pages/About.jsx"
 import Contacts from "./pages/Contacts.jsx"
-import Movies from "./pages/Movies.jsx"
+import movies from "./pages/movies.jsx"
 import Details from "./pages/Details.jsx"
+import NotFoundPage from "./pages/NotFoundPage.jsx"
 
 function App() {
 
@@ -20,10 +21,12 @@ function App() {
             <Route path="/about" Component={About} />
             <Route path="/contacts" Component={Contacts} />
             <Route path="/movies" >
-              <Route index Component={Movies} />
+              <Route index Component={movies} />
               <Route path=":id" Component={Details} />
             </Route>
           </Route>
+          {/* Rotta per le pagine non trovate: inserendo path="*" */}
+          <Route path="*" Component={NotFoundPage} />
         </Routes>
       </BrowserRouter>
     </GlobalProvider>
