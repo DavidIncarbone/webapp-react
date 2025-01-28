@@ -9,10 +9,10 @@
 img {
     width: 100%;
     /* L'immagine occupa il 100% di larghezza del suo contenitore */
-    height: 60vh;
+    height: 600px;
     /* Imposto un'altezza fissa per tutte le immagini contenute nelle Card */
     max-width: 100%;
     /* Non supera la sua dimenzione naturale */
-    object-fit: cover;
+    object-fit: contain;
     /* Mantiene le proporzioni e riempie il contenitore */
 }

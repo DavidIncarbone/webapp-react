@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router";
+import axios from "axios";
 
 function ReviewForm() {
 
@@ -24,6 +25,10 @@ function ReviewForm() {
 
         //axios 
         console.log(formData);
+        axios.post(`http://localhost:3000/api/movies/${id}/reviews`, formData).then((res) => {
+            console.log(res)
+
+        })
         setFormData(initialForm);
     };
 
