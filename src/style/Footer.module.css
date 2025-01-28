@@ -1,4 +1,9 @@
-.footerClass {
-    height: 100px;
-    z-index: 500;
+.footerIMG {
+    width: 40px;
+    height: 40px;
+}
+
+.footerInfo {
+
+    font-size: x-small;
 }

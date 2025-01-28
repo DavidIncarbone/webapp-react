@@ -1,9 +1,10 @@
 // Creazione della GlobalContext che conterrà tutte le chiamate API al server
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
-
+import NotFoundPage from "../pages/NotFoundPage";
 //Api url e endpoint per axios
 const apiUrl = import.meta.env.VITE_APIURL;
+const endpoint = "/movies/"
 
 const GlobalContext = createContext();  //crea il Context e gli do il nome GlobalContext
 
@@ -13,6 +14,8 @@ const GlobalProvider = ({ children }) => {
     const [movies, setmovies] = useState([]);
     // useState del singolo movie:
     const [singlemovie, setSinglemovie] = useState();
+    // useState del Loader:
+    const [isLoading, setIsLoading] = useState(false);
 
     /* Configuro lo useEffect per chiamare l'API per i film popolari solo al caricamento della pagina: */
     useEffect(() => {
@@ -20,6 +23,7 @@ const GlobalProvider = ({ children }) => {
     }, []);
 
     function getmovies() {
+        setIsLoading(true);     // Attivo il Loader fino all'arrivo dei dati tramite chiamata axios
         axios.get(apiUrl + "/movies")
             .then((res) => {
                 console.log(res.data.items);
@@ -30,13 +34,15 @@ const GlobalProvider = ({ children }) => {
             })
             .finally(() => {
                 console.log("Finito: ", movies);
+                setIsLoading(false);    // Disattivo il Loader dopo l'arrivo dei dati (sia che siano arrivati, sia in caso di errore)
             });
     }
 
     function getSinglemovie(id) {
+        setIsLoading(true);     // Attivo il Loader fino all'arrivo dei dati tramite chiamata axios
         axios.get(apiUrl + "/movies/" + id)
             .then((res) => {
-                console.log("Scheda libro intero: ", res.data);
+                console.log("Scheda libro intero: ", res.data.item);
                 setSinglemovie(res.data.item);
             })
             .catch((err) => {
@@ -45,8 +51,23 @@ const GlobalProvider = ({ children }) => {
             .finally(() => {
                 console.log("Finito libri");
                 console.log("singleMovie: ", singlemovie);
-
+                setIsLoading(false);    // Disattivo il Loader dopo l'arrivo dei dati (sia che siano arrivati, sia in caso di errore)
             });
+    }
+
+    function postReview(formData, movie_id) {
+        setIsLoading(true);     // Attivo il Loader fino all'arrivo dei dati tramite chiamata axios
+        axios.post(`${apiUrl}${endpoint}${movie_id}/reviews`, formData)
+            .then((res) => {
+                console.log(`Chiamata axios: ${res}`);
+                getSinglemovie(movie_id);
+            }).catch((error) => {
+                console.log(error);
+
+            }).finally(() => {
+                console.log("Done");
+                setIsLoading(false);    // Disattivo il Loader dopo l'arrivo dei dati (sia che siano arrivati, sia in caso di errore)
+            })
     }
 
     // Oggetto contenente i dati da passare al value per offrirli ai Consumer (i componenti racchiusi nel Provider di GLobalContext):
@@ -55,6 +76,9 @@ const GlobalProvider = ({ children }) => {
         setmovies,
         singlemovie,
         getSinglemovie,
+        postReview,
+        isLoading,
+        setIsLoading,
     }
 
     return (

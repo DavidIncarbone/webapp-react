@@ -20,9 +20,7 @@ export default function Details() {
 
     return (
         <section className="container py-4">
-            <div className="row g-3">
-                <MovieDetails datamovies={singlemovie} />
-            </div>
+            <MovieDetails datamovies={singlemovie} />
         </section>
     );
 }

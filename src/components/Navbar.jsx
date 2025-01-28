@@ -9,10 +9,10 @@ export default function Navbar() {
     };
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-light">
+        <nav className="navbar navbar-expand-lg navbar-light h-100">
             <div className="container-fluid">
                 <NavLink to="/" className="navbar-brand">
-                    HomePage
+                    <img style={{ width: "40px", height: "40px", borderRadius: "50px" }} src="https://www.quattroerre.it/wp-content/uploads/2019/10/lettera-s-olografica-oro.jpg" alt="" />
                 </NavLink>
                 <button
                     className="navbar-toggler"
@@ -35,7 +35,7 @@ export default function Navbar() {
                                 style={({ isActive }) => (isActive ? { color: "red" } : {})}
                                 end
                             >
-                                Lista dei films
+                                Lista dei libri
                             </NavLink>
                         </li>
                         <li className="nav-item">

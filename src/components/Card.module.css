@@ -6,13 +6,10 @@
 }
 
 /* Tag img responsive */
+
 img {
-    width: 100%;
-    /* L'immagine occupa il 100% di larghezza del suo contenitore */
-    height: 600px;
-    /* Imposto un'altezza fissa per tutte le immagini contenute nelle Card */
+    height: 100%;
     max-width: 100%;
-    /* Non supera la sua dimenzione naturale */
-    object-fit: contain;
-    /* Mantiene le proporzioni e riempie il contenitore */
+    aspect-ratio: 1 / 1.5;
+    /* object-fit: cover; */
 }

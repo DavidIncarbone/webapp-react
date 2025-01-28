@@ -1,16 +1,13 @@
 import { useState } from "react";
-import { useParams } from "react-router";
-import axios from "axios";
+import { useGlobalContext } from "../contexts/GlobalContext";
 
-function ReviewForm() {
+function ReviewForm({ movie_id }) {
 
-    const { id } = useParams();
-
+    const { postReview } = useGlobalContext();
     const initialForm = {
         name: "",
         text: "",
-        vote: "",
-        movie_id: parseInt(id)
+        vote: ""
     };
 
     const [formData, setFormData] = useState(initialForm);
@@ -25,10 +22,7 @@ function ReviewForm() {
 
         //axios 
         console.log(formData);
-        axios.post(`http://localhost:3000/api/movies/${id}/reviews`, formData).then((res) => {
-            console.log(res)
-
-        })
+        postReview({ ...formData }, movie_id);
         setFormData(initialForm);
     };
 
