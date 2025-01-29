@@ -16,26 +16,43 @@ const GlobalProvider = ({ children }) => {
     const [singlemovie, setSinglemovie] = useState();
     // useState del Loader:
     const [isLoading, setIsLoading] = useState(false);
+    const [numPages, setNumPages] = useState(0);
+    const [page, setPage] = useState(1);
+
 
     /* Configuro lo useEffect per chiamare l'API per i film popolari solo al caricamento della pagina: */
     useEffect(() => {
         getmovies();
-    }, []);
+    }, [page]);
 
     function getmovies() {
         setIsLoading(true);     // Attivo il Loader fino all'arrivo dei dati tramite chiamata axios
-        axios.get(apiUrl + "/movies")
+        axios
+            .get(`${apiUrl}${endpoint}`, { params: { page } })
             .then((res) => {
-                console.log(res.data.items);
+                setNumPages(Math.ceil(res.data.count / res.data.limit));
                 setmovies(res.data.items);
+
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
             })
             .finally(() => {
-                console.log("Finito: ", movies);
-                setIsLoading(false);    // Disattivo il Loader dopo l'arrivo dei dati (sia che siano arrivati, sia in caso di errore)
-            });
+                console.log("Finito");
+                setIsLoading(false);
+            })
+        // axios.get(apiUrl + "/movies")
+        //     .then((res) => {
+        //         console.log(res.data.items);
+        //         setmovies(res.data.items);
+        //     })
+        //     .catch((err) => {
+        //         console.log(err);
+        //     })
+        //     .finally(() => {
+        //         console.log("Finito: ", movies);
+        //         setIsLoading(false);    // Disattivo il Loader dopo l'arrivo dei dati (sia che siano arrivati, sia in caso di errore)
+        //     });
     }
 
     function getSinglemovie(id) {
@@ -69,6 +86,10 @@ const GlobalProvider = ({ children }) => {
                 setIsLoading(false);    // Disattivo il Loader dopo l'arrivo dei dati (sia che siano arrivati, sia in caso di errore)
             })
     }
+    function handleClick(page) {
+        console.log(page);
+        setPage(page);
+    }
 
     // Oggetto contenente i dati da passare al value per offrirli ai Consumer (i componenti racchiusi nel Provider di GLobalContext):
     const collectionData = {
@@ -79,6 +100,11 @@ const GlobalProvider = ({ children }) => {
         postReview,
         isLoading,
         setIsLoading,
+        handleClick,
+        page,
+        setPage,
+        numPages,
+        setNumPages
     }
 
     return (

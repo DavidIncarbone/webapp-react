@@ -1,8 +1,14 @@
 import { useGlobalContext } from "../contexts/GlobalContext.jsx";
 import Card from "../components/Card.jsx";
 import Loader from "../components/Loader.jsx";
+import PagesSlider from "../components/PagesSlider";
 export default function movies() {
-    const { movies, isLoading } = useGlobalContext();
+    const { movies,
+        isLoading,
+        handleClick,
+        page,
+        numPages,
+    } = useGlobalContext();
     return (
         <section className="container py-4">
             {isLoading && <Loader />}
@@ -13,6 +19,7 @@ export default function movies() {
                     </div>
                 ))}
             </div>
+            <PagesSlider handleClick={handleClick} page={page} numPages={numPages} />
         </section>
     );
 }

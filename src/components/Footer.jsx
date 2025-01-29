@@ -9,7 +9,7 @@ export default function Footer() {
 
             <div className={`d-flex gap-2 align-items-center h-100 ps-1 `} >
                 <div className={`${FooterStyle.footerIMG}`}>
-                    <img style={{ width: "100%", height: "100%" }} src="https://www.movierepublic.it/media/ex_satchmo/editori/download.jpeg.200x200_q85.jpg" alt="Sellerio icon" />
+                    <img style={{ width: "100%", height: "100%" }} src="https://www.bookrepublic.it/media/ex_satchmo/editori/download.jpeg.200x200_q85.jpg" alt="Sellerio icon" />
                 </div>
                 <div className="h-100 d-flex flex-column">
                     <div>Sellerio Editore</div>
